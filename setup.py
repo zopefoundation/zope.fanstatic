@@ -1,8 +1,10 @@
-from setuptools import setup, find_packages
 import os
+from setuptools import setup, find_packages
+
 
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
+
 
 long_description = (
     read('src', 'zope', 'fanstatic', 'README.txt')
@@ -30,8 +32,8 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'setuptools',
         'fanstatic >= 0.11',
+        'setuptools',
         'zope.component',
         'zope.errorview [browser]',
         'zope.event',
@@ -39,18 +41,18 @@ setup(
         'zope.publisher',
         'zope.traversing',
         ],
-    extras_require = {
-      'test': [
-         'zope.annotation',
-         'zope.app.publication',
-         'zope.app.wsgi >= 3.10.0',
-         'zope.browserpage',
-         'zope.container',
-         'zope.principalregistry',
-         'zope.securitypolicy',
-         'zope.security',
-         'zope.site',
-         'zope.app.appsetup',
-         ],
-      },
-    )
+    extras_require={
+        'test': [
+            'zope.annotation',
+            'zope.app.appsetup',
+            'zope.app.publication',
+            'zope.app.wsgi[test]',
+            'zope.browserpage',
+            'zope.container',
+            'zope.principalregistry',
+            'zope.security',
+            'zope.securitypolicy',
+            'zope.site'
+            ],
+    },
+)
