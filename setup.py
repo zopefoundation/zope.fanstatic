@@ -7,8 +7,6 @@ def read(*rnames):
 
 
 long_description = (
-    read('src', 'zope', 'fanstatic', 'README.txt')
-    + '\n' +
     read('CHANGES.txt')
     + '\n' +
     'Download\n'
