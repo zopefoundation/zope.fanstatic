@@ -11,12 +11,16 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-from zope.app.wsgi.testlayer import BrowserLayer
 import fanstatic
+import zope.testbrowser.wsgi
+import zope.app.wsgi.testlayer
 
-class ZopeFanstaticBrowserLayer(BrowserLayer):
-    """ A zope testlayer with fanstatic Injector. """
+
+class ZopeFanstaticBrowserLayer(
+        zope.testbrowser.wsgi.TestBrowserLayer,
+        zope.app.wsgi.testlayer.BrowserLayer):
+    """A zope testlayer with fanstatic Injector.
+    """
 
     def setup_middleware(self, app):
-        return fanstatic.Injector(app)
-
+        return fanstatic.Injector(app, bottom=True)

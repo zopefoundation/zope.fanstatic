@@ -11,17 +11,17 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-from zope.interface import implements
+import fanstatic
+
 from zope.component import adapter
+from zope.errorview.interfaces import IHandleExceptionEvent
+from zope.fanstatic.interfaces import IZopeFanstaticResource
+from zope.interface import implementer
 from zope.publisher.interfaces import IEndRequestEvent
 from zope.traversing.browser.absoluteurl import absoluteURL
 from zope.traversing.browser.interfaces import IAbsoluteURL
 from zope.traversing.interfaces import ITraversable
-from zope.errorview.interfaces import IHandleExceptionEvent
 
-import fanstatic
-
-from zope.fanstatic.interfaces import IZopeFanstaticResource
 
 def ensure_base_url(needed, request):
     if not isinstance(needed, fanstatic.NeededResources):
@@ -53,6 +53,7 @@ def set_base_url(event):
     needed = fanstatic.get_needed()
     ensure_base_url(needed, event.request)
 
+
 @adapter(IHandleExceptionEvent)
 def clear_needed_resources(event):
     needed = fanstatic.get_needed()
@@ -60,10 +61,12 @@ def clear_needed_resources(event):
         # Only if there's a concrete NeededResources.
         needed.clear()
 
+
 _sentinel = object()
 
-class ZopeFanstaticResource(object):
 
+@implementer(IZopeFanstaticResource, ITraversable, IAbsoluteURL)
+class ZopeFanstaticResource(object):
     # Hack to get ++resource++foo/bar/baz.jpg *paths* working in Zope
     # Pagetemplates. Note that ++resource+foo/bar/baz.jpg *URLs* will
     # not work with this hack!
@@ -71,8 +74,6 @@ class ZopeFanstaticResource(object):
     # The ZopeFanstaticResource class also implements an __getitem__()
     # / get() interface, to support rendering URLs to resources from
     # code.
-
-    implements(IZopeFanstaticResource, ITraversable, IAbsoluteURL)
 
     def __init__(self, request, library, name=''):
         self.request = request

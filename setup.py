@@ -7,23 +7,41 @@ def read(*rnames):
 
 
 long_description = (
+    read('src/zope/fanstatic/README.txt')
+    + '\n' +
     read('CHANGES.txt')
     + '\n' +
     'Download\n'
     '********\n'
     )
 
+
 setup(
     name='zope.fanstatic',
     version='0.13dev',
     description="Fanstatic integration for Zope.",
     long_description=long_description,
-    classifiers=['Framework :: Zope3'],
     keywords='',
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.org',
     url='http://pypi.python.org/pypi/zope.fanstatic',
     license='ZPL 2.1',
+    classifiers=[
+        'Environment :: Web Environment',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: Zope Public License',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: Implementation',
+        'Programming Language :: Python :: Implementation :: CPython',
+        'Programming Language :: Python :: Implementation :: PyPy',
+        'Framework :: Zope3',
+        ],
     packages=find_packages('src'),
     namespace_packages=['zope'],
     package_dir={'': 'src'},
@@ -50,7 +68,8 @@ setup(
             'zope.principalregistry',
             'zope.security',
             'zope.securitypolicy',
-            'zope.site'
+            'zope.site',
+            'zope.testbrowser',
             ],
     },
 )
