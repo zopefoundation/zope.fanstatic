@@ -1,0 +1,7 @@
+.installed.cfg
+bin
+develop-eggs
+src/zope.fanstatic.egg-info
+*.pyc
+.tox
+.coverage

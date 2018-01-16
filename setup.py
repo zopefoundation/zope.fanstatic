@@ -1,11 +1,13 @@
-from setuptools import setup, find_packages
 import os
+from setuptools import setup, find_packages
+
 
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
+
 long_description = (
-    read('src', 'zope', 'fanstatic', 'README.txt')
+    read('src/zope/fanstatic/README.txt')
     + '\n' +
     read('CHANGES.txt')
     + '\n' +
@@ -13,25 +15,41 @@ long_description = (
     '********\n'
     )
 
+
 setup(
     name='zope.fanstatic',
     version='0.13dev',
     description="Fanstatic integration for Zope.",
     long_description=long_description,
-    classifiers=['Framework :: Zope3'],
     keywords='',
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.org',
     url='http://pypi.python.org/pypi/zope.fanstatic',
     license='ZPL 2.1',
+    classifiers=[
+        'Environment :: Web Environment',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: Zope Public License',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: Implementation',
+        'Programming Language :: Python :: Implementation :: CPython',
+        'Programming Language :: Python :: Implementation :: PyPy',
+        'Framework :: Zope3',
+        ],
     packages=find_packages('src'),
     namespace_packages=['zope'],
     package_dir={'': 'src'},
     include_package_data=True,
     zip_safe=False,
     install_requires=[
+        'fanstatic >= 1.0.0',
         'setuptools',
-        'fanstatic >= 0.11',
         'zope.component',
         'zope.errorview [browser]',
         'zope.event',
@@ -39,18 +57,19 @@ setup(
         'zope.publisher',
         'zope.traversing',
         ],
-    extras_require = {
-      'test': [
-         'zope.annotation',
-         'zope.app.publication',
-         'zope.app.wsgi >= 3.10.0',
-         'zope.browserpage',
-         'zope.container',
-         'zope.principalregistry',
-         'zope.securitypolicy',
-         'zope.security',
-         'zope.site',
-         'zope.app.appsetup',
-         ],
-      },
-    )
+    extras_require={
+        'test': [
+            'zope.annotation',
+            'zope.app.appsetup',
+            'zope.app.publication',
+            'zope.app.wsgi[test]',
+            'zope.browserpage',
+            'zope.container',
+            'zope.principalregistry',
+            'zope.security',
+            'zope.securitypolicy',
+            'zope.site',
+            'zope.testbrowser',
+            ],
+    },
+)

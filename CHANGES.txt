@@ -4,8 +4,7 @@ CHANGES
 0.13 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+- Python 3 and Fanstatic 1.0.0 compatibility.
 
 0.12 (2011-08-31)
 -----------------

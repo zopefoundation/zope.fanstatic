@@ -11,18 +11,18 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-import unittest
 import doctest
+import fanstatic
+import unittest
+import zope.fanstatic.tests
 
-from zope.interface import Interface
 from zope.component import getGlobalSiteManager
+from zope.fanstatic.testing import ZopeFanstaticBrowserLayer
+from zope.fanstatic.tests.view import foo
+from zope.fanstatic.zcml import create_factory
+from zope.interface import Interface
 from zope.publisher.interfaces.browser import IBrowserRequest
 
-import fanstatic
-from zope.fanstatic.zcml import create_factory
-from zope.fanstatic.tests.view import foo
-from zope.fanstatic.testing import ZopeFanstaticBrowserLayer
-import zope.fanstatic.tests
 
 class TestLayer(ZopeFanstaticBrowserLayer):
 
@@ -30,18 +30,29 @@ class TestLayer(ZopeFanstaticBrowserLayer):
         super(TestLayer, self).testSetUp()
         # Because it is difficult to dynamically register a
         # entry_point in tests, we do the setup by hand:
+        registry = fanstatic.get_library_registry()
+        registry.add(foo)
         resource_factory = create_factory(foo)
         getGlobalSiteManager().registerAdapter(
             resource_factory, (IBrowserRequest,), Interface, foo.name)
 
+    def testTearDown(self):
+        super(TestLayer, self).testTearDown()
+        registry = fanstatic.get_library_registry()
+        registry.clear()
+
+
 layer = TestLayer(zope.fanstatic.tests)
+
 
 class NoInjectorTestLayer(TestLayer):
 
     def setup_middleware(self, app):
         return app
 
+
 no_injector_layer = NoInjectorTestLayer(zope.fanstatic.tests)
+
 
 def test_suite():
     readme = doctest.DocFileSuite(
