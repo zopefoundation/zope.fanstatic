@@ -40,6 +40,7 @@ setup(
         'Programming Language :: Python :: Implementation',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
+        'Framework :: Zope :: 3',
         'Framework :: Zope3',
         ],
     packages=find_packages('src'),
