@@ -24,7 +24,7 @@ setup(
     keywords='',
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.org',
-    url='http://pypi.python.org/pypi/zope.fanstatic',
+    url='https://github.com/zopefoundation/zope.fanstatic',
     license='ZPL 2.1',
     classifiers=[
         'Environment :: Web Environment',
