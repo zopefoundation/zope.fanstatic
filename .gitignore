@@ -1,7 +1,24 @@
-.installed.cfg
-bin
-develop-eggs
-src/zope.fanstatic.egg-info
+# Generated from:
+# https://github.com/zopefoundation/meta/tree/master/config/pure-python
+*.egg-info/
+*.profraw
 *.pyc
-.tox
+*.pyo
 .coverage
+.coverage.*
+.eggs/
+.installed.cfg
+.mr.developer.cfg
+.tox/
+__pycache__/
+bin/
+build/
+coverage.xml
+develop-eggs/
+dist/
+docs/_build
+eggs/
+lib/
+lib64
+parts/
+pyvenv.cfg
