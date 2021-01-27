@@ -19,6 +19,7 @@ import fanstatic
 from zope.fanstatic.zopesupport import ZopeFanstaticResource, ensure_base_url
 from zope.fanstatic.tests import tests
 
+
 class ComputeURL(unittest.TestCase):
 
     layer = tests.layer
@@ -27,44 +28,45 @@ class ComputeURL(unittest.TestCase):
         fanstatic.init_needed()
         self.context = object()
         self.request = TestRequest()
-        self.resource_namespace  = getMultiAdapter(
+        self.resource_namespace = getMultiAdapter(
             (self.context, self.request), ITraversable, name='resource')
 
     def test_lookup_resource(self):
         # There's a resource library registered for the name 'foo'.
         resource = self.resource_namespace.traverse('foo', [])
-        self.assert_(isinstance(resource, ZopeFanstaticResource))
+        self.assertIsInstance(resource, ZopeFanstaticResource)
 
     def test_library_url(self):
         resource = self.resource_namespace.traverse('foo', [])
-        self.assertEquals('http://127.0.0.1/fanstatic/foo', str(resource))
+        self.assertEqual('http://127.0.0.1/fanstatic/foo', str(resource))
 
     def test_get(self):
         resource = self.resource_namespace.traverse('foo', [])
         a_js = resource.get('a.js')
-        self.assert_(isinstance(a_js, ZopeFanstaticResource))
-        self.assertEquals('http://127.0.0.1/fanstatic/foo/a.js', str(a_js))
+        self.assertIsInstance(a_js, ZopeFanstaticResource)
+        self.assertEqual('http://127.0.0.1/fanstatic/foo/a.js', str(a_js))
 
         woekie = resource.get('bar').get('baz').get('woekie.png')
-        self.assert_(isinstance(woekie, ZopeFanstaticResource))
-        self.assertEquals(
+        self.assertIsInstance(woekie, ZopeFanstaticResource)
+        self.assertEqual(
             'http://127.0.0.1/fanstatic/foo/bar/baz/woekie.png', str(woekie))
 
     def test_getitem(self):
         resource = self.resource_namespace.traverse('foo', [])
         a_js = resource['a.js']
-        self.assert_(isinstance(a_js, ZopeFanstaticResource))
-        self.assertEquals('http://127.0.0.1/fanstatic/foo/a.js', str(a_js))
+        self.assertIsInstance(a_js, ZopeFanstaticResource)
+        self.assertEqual('http://127.0.0.1/fanstatic/foo/a.js', str(a_js))
 
         woekie = resource['bar']['baz']['woekie.png']
-        self.assert_(isinstance(woekie, ZopeFanstaticResource))
-        self.assertEquals(
+        self.assertIsInstance(woekie, ZopeFanstaticResource)
+        self.assertEqual(
             'http://127.0.0.1/fanstatic/foo/bar/baz/woekie.png', str(woekie))
 
     def test_call(self):
         resource = self.resource_namespace.traverse('foo', [])
         a_js = resource.get('a.js')
-        self.assertEquals(str(a_js), a_js())
+        self.assertEqual(str(a_js), a_js())
+
 
 class NoComputeURLForDummyResources(unittest.TestCase):
     # zopesupport.ensure_base_url() will call has_base_url() on the
@@ -83,9 +85,8 @@ class NoComputeURLForDummyResources(unittest.TestCase):
     def test_call_wont_fail(self):
         context = object()
         request = TestRequest()
-        resource_namespace  = getMultiAdapter(
+        resource_namespace = getMultiAdapter(
             (context, request), ITraversable, name='resource')
         resource = resource_namespace.traverse('foo', [])
         a_js = resource.get('a.js')
-        self.assertEquals('++resource++foo/a.js', a_js())
-
+        self.assertEqual('++resource++foo/a.js', a_js())

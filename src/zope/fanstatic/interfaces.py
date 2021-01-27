@@ -13,8 +13,10 @@
 ##############################################################################
 from zope.interface import Interface
 
+
 class ISetupZopeFanstatic(Interface):
     pass
+
 
 class IZopeFanstaticResource(Interface):
 
@@ -23,4 +25,3 @@ class IZopeFanstaticResource(Interface):
 
     def __getitem__(self, name):
         pass
-
