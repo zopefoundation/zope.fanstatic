@@ -51,7 +51,8 @@ class NoInjectorTestLayer(TestLayer):
         return app
 
 
-no_injector_layer = NoInjectorTestLayer(zope.fanstatic.tests)
+no_injector_layer = NoInjectorTestLayer(
+    zope.fanstatic.tests, allowTearDown=True)
 
 
 def test_suite():
