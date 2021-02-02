@@ -13,14 +13,15 @@
 ##############################################################################
 from zope.interface import Interface
 
+
 class ISetupZopeFanstatic(Interface):
     pass
+
 
 class IZopeFanstaticResource(Interface):
 
     def get(name, default):
-        pass
+        """Get a resource, fallback to default on KeyError."""
 
     def __getitem__(self, name):
-        pass
-
+        """Get a resource, raise KeyError if not existing."""

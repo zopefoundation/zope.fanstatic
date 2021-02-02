@@ -13,12 +13,12 @@ long_description = (
     + '\n' +
     'Download\n'
     '********\n'
-    )
+)
 
 
 setup(
     name='zope.fanstatic',
-    version='3.0.1.dev0',
+    version='3.1.0.dev0',
     description="Fanstatic integration for Zope.",
     long_description=long_description,
     keywords='',
@@ -34,15 +34,17 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: Implementation',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Framework :: Zope :: 3',
         'Framework :: Zope :: 3',
-        ],
+    ],
     packages=find_packages('src'),
     namespace_packages=['zope'],
     package_dir={'': 'src'},
@@ -57,7 +59,7 @@ setup(
         'zope.interface',
         'zope.publisher',
         'zope.traversing',
-        ],
+    ],
     extras_require={
         'test': [
             'zope.annotation',
@@ -71,6 +73,6 @@ setup(
             'zope.securitypolicy',
             'zope.site',
             'zope.testbrowser',
-            ],
+        ],
     },
 )
