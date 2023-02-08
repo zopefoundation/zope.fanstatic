@@ -12,15 +12,15 @@
 #
 ##############################################################################
 import fanstatic
-
 from zope.component import adapter
 from zope.errorview.interfaces import IHandleExceptionEvent
-from zope.fanstatic.interfaces import IZopeFanstaticResource
 from zope.interface import implementer
 from zope.publisher.interfaces import IEndRequestEvent
 from zope.traversing.browser.absoluteurl import absoluteURL
 from zope.traversing.browser.interfaces import IAbsoluteURL
 from zope.traversing.interfaces import ITraversable
+
+from zope.fanstatic.interfaces import IZopeFanstaticResource
 
 
 def ensure_base_url(needed, request):

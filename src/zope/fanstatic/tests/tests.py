@@ -12,16 +12,17 @@
 #
 ##############################################################################
 import doctest
-import fanstatic
 import unittest
-import zope.fanstatic.tests
 
+import fanstatic
 from zope.component import getGlobalSiteManager
+from zope.interface import Interface
+from zope.publisher.interfaces.browser import IBrowserRequest
+
+import zope.fanstatic.tests
 from zope.fanstatic.testing import ZopeFanstaticBrowserLayer
 from zope.fanstatic.tests.view import foo
 from zope.fanstatic.zcml import create_factory
-from zope.interface import Interface
-from zope.publisher.interfaces.browser import IBrowserRequest
 
 
 class TestLayer(ZopeFanstaticBrowserLayer):

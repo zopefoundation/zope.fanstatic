@@ -12,8 +12,8 @@
 #
 ##############################################################################
 import fanstatic
-import zope.testbrowser.wsgi
 import zope.app.wsgi.testlayer
+import zope.testbrowser.wsgi
 
 
 class ZopeFanstaticBrowserLayer(

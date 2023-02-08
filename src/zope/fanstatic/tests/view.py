@@ -11,7 +11,9 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-from fanstatic import Library, Resource
+from fanstatic import Library
+from fanstatic import Resource
+
 
 foo = Library("foo", "foo_dir")
 
