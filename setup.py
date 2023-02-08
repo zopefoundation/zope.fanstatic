@@ -25,7 +25,7 @@ setup(
     long_description=long_description,
     keywords='',
     author='Zope Foundation and Contributors',
-    author_email='zope-dev@zope.org',
+    author_email='zope-dev@zope.dev',
     url='https://github.com/zopefoundation/zope.fanstatic',
     license='ZPL 2.1',
     classifiers=[
@@ -50,6 +50,7 @@ setup(
     package_dir={'': 'src'},
     include_package_data=True,
     zip_safe=False,
+    python_requires='>=3.7',
     install_requires=[
         'fanstatic >= 1.0.0',
         'setuptools',

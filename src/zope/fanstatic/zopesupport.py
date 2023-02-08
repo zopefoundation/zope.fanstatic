@@ -66,7 +66,7 @@ _sentinel = object()
 
 
 @implementer(IZopeFanstaticResource, ITraversable, IAbsoluteURL)
-class ZopeFanstaticResource(object):
+class ZopeFanstaticResource:
     # Hack to get ++resource++foo/bar/baz.jpg *paths* working in Zope
     # Pagetemplates. Note that ++resource+foo/bar/baz.jpg *URLs* will
     # not work with this hack!
@@ -83,7 +83,7 @@ class ZopeFanstaticResource(object):
     def get(self, name, default=_sentinel):
         # XXX return default if given, or NotFound (or something) when
         # not, in case name is not resolved to an actual resource.
-        name = '%s/%s' % (self.name, name)
+        name = '{}/{}'.format(self.name, name)
         return ZopeFanstaticResource(self.request, self.library, name=name)
 
     def traverse(self, name, furtherPath):
@@ -100,7 +100,7 @@ class ZopeFanstaticResource(object):
         if not isinstance(needed, fanstatic.NeededResources):
             # We cannot render a URL in this case, we just return some
             # fake url to indicate this.
-            return '++resource++%s%s' % (self.library.name, self.name)
+            return '++resource++{}{}'.format(self.library.name, self.name)
         ensure_base_url(needed, self.request)
         return needed.library_url(self.library) + self.name
 

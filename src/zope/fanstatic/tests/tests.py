@@ -28,7 +28,7 @@ from zope.fanstatic.zcml import create_factory
 class TestLayer(ZopeFanstaticBrowserLayer):
 
     def testSetUp(self):
-        super(TestLayer, self).testSetUp()
+        super().testSetUp()
         # Because it is difficult to dynamically register a
         # entry_point in tests, we do the setup by hand:
         registry = fanstatic.get_library_registry()
@@ -38,7 +38,7 @@ class TestLayer(ZopeFanstaticBrowserLayer):
             resource_factory, (IBrowserRequest,), Interface, foo.name)
 
     def testTearDown(self):
-        super(TestLayer, self).testTearDown()
+        super().testTearDown()
         registry = fanstatic.get_library_registry()
         registry.clear()
 

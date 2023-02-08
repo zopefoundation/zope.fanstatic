@@ -26,29 +26,29 @@ c = Resource(foo, "c.js", bottom=True)
 d = Resource(foo, "d.js", bottom=True, depends=[c])
 
 
-class TestSingle(object):
+class TestSingle:
     def widget(self):
         a.need()
         return "the widget HTML itself"
 
 
-class TestMultiple(object):
+class TestMultiple:
     def widget(self):
         b.need()
         return "the widget HTML itself"
 
 
-class TestBottom(object):
+class TestBottom:
     def widget(self):
         d.need()
         return "the widget HTML itself"
 
 
-class TestInlineResource(object):
+class TestInlineResource:
     pass
 
 
-class TestError(object):
+class TestError:
     def widget(self):
         b.need()
         raise Exception('I am not a teapot')
