@@ -18,7 +18,7 @@ long_description = (
 
 setup(
     name='zope.fanstatic',
-    version='3.1.0.dev0',
+    version='4.0.dev0',
     description="Fanstatic integration for Zope.",
     long_description=long_description,
     keywords='',
