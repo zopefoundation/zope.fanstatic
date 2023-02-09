@@ -12,12 +12,15 @@
 #
 ##############################################################################
 import unittest
+
+import fanstatic
 from zope.component import getMultiAdapter
 from zope.publisher.browser import TestRequest
 from zope.traversing.interfaces import ITraversable
-import fanstatic
-from zope.fanstatic.zopesupport import ZopeFanstaticResource, ensure_base_url
+
 from zope.fanstatic.tests import tests
+from zope.fanstatic.zopesupport import ZopeFanstaticResource
+from zope.fanstatic.zopesupport import ensure_base_url
 
 
 class ComputeURL(unittest.TestCase):

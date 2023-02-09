@@ -12,11 +12,11 @@
 #
 ##############################################################################
 import fanstatic
+from zope.interface import Interface
+from zope.publisher.interfaces.browser import IBrowserRequest
 
 from zope import component
 from zope.fanstatic.zopesupport import ZopeFanstaticResource
-from zope.interface import Interface
-from zope.publisher.interfaces.browser import IBrowserRequest
 
 
 def create_factory(library):

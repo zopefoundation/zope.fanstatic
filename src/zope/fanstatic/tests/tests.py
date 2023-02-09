@@ -12,22 +12,23 @@
 #
 ##############################################################################
 import doctest
-import fanstatic
 import unittest
-import zope.fanstatic.tests
 
+import fanstatic
 from zope.component import getGlobalSiteManager
+from zope.interface import Interface
+from zope.publisher.interfaces.browser import IBrowserRequest
+
+import zope.fanstatic.tests
 from zope.fanstatic.testing import ZopeFanstaticBrowserLayer
 from zope.fanstatic.tests.view import foo
 from zope.fanstatic.zcml import create_factory
-from zope.interface import Interface
-from zope.publisher.interfaces.browser import IBrowserRequest
 
 
 class TestLayer(ZopeFanstaticBrowserLayer):
 
     def testSetUp(self):
-        super(TestLayer, self).testSetUp()
+        super().testSetUp()
         # Because it is difficult to dynamically register a
         # entry_point in tests, we do the setup by hand:
         registry = fanstatic.get_library_registry()
@@ -37,7 +38,7 @@ class TestLayer(ZopeFanstaticBrowserLayer):
             resource_factory, (IBrowserRequest,), Interface, foo.name)
 
     def testTearDown(self):
-        super(TestLayer, self).testTearDown()
+        super().testTearDown()
         registry = fanstatic.get_library_registry()
         registry.clear()
 
